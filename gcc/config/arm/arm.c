@@ -2903,6 +2903,11 @@ arm_option_check_internal (struct gcc_options *opts)
   if (TARGET_ARM_P (flags) && TARGET_CALLEE_INTERWORKING)
     warning (0, "enabling callee interworking support is only meaningful when compiling for the Thumb");
 
+  if (flag_pic) {
+    warning (0, "Disabling PIC for this compilation unit.");
+    flag_pic = 0;
+  }
+
   /* If this target is normally configured to use APCS frames, warn if they
      are turned off and debugging is turned on.  */
   if (TARGET_ARM_P (flags)
